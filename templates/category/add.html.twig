@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Categorie{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-bold text-center text-gray-800 dark:text-white mt-5">
+        <span class="bg-gradient-to-r from-blue-500 to-teal-500 text-transparent bg-clip-text">
+            Créer une nouvelle catégorie
+        </span>
+    </h1>
+
+    <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md p-6 mt-8 dark:bg-gray-800">
+
+        {{ include('category/_form.html.twig') }}
+
+        <a href="{{ path('category_collection') }}" class="mt-4 inline-block px-5 py-2 text-sm font-medium text-gray-600 bg-gray-200 rounded-lg shadow-sm hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 transition-all duration-300">
+            Retour à la liste des catégories
+        </a>
+    </div>
+{% endblock %} 

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un produit{% endblock %}
+
+{% block body %}
+<div class="container mx-auto mt-10">
+    <h1 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-6">
+        Modifier un produit
+    </h1>
+
+    <div class="max-w-xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 space-y-6">
+        <!-- Formulaire de mise à jour -->
+        {{ include('product/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+        <!-- Lien vers la collection -->
+        <div class="text-center mt-4">
+            <a href="{{ path('product_list') }}" class="inline-block px-6 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 transition-all duration-300">
+                Retour à la collection
+            </a>
+        </div>
+
+        <!-- Formulaire de suppression -->
+        <div class="mt-6">
+            {{ include('product/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}
