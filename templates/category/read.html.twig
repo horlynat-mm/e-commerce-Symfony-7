@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la catégorie{% endblock %}
+
+{% block body %}
+<div class="container mx-auto mt-10">
+    <h1 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">Détails de la catégorie</h1>
+
+    <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-800 p-6">
+        <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">
+            <tbody>
+                <tr class="border-b dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">ID</th>
+                    <td class="px-6 py-4">{{ categorie.id }}</td>
+                </tr>
+                <tr class="border-b dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">Nom</th>
+                    <td class="px-6 py-4">{{ categorie.name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">Slug</th>
+                    <td class="px-6 py-4">{{ categorie.slug }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="flex justify-between mt-6">
+            <!-- Bouton Retour -->
+            <a href="{{ path('category_collection') }}" class="px-6 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg shadow hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 transition-all duration-300">
+                Retour à la liste
+            </a>
+
+            <!-- Bouton Modifier -->
+            <a href="{{ path('category_update', {'slug': categorie.slug}) }}" class="px-6 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600 dark:bg-blue-400 dark:hover:bg-blue-500 transition-all duration-300">
+                Modifier
+            </a>
+
+            <!-- Bouton Supprimer (formulaire inclus) -->
+            <div>
+                {{ include('category/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

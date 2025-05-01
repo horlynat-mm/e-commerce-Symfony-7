@@ -1,0 +1,71 @@
+<!-- Messages de validation ou d'erreur -->
+{% for message in app.flashes('success') %}
+    <div class="flex items-center p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-11a1 1 0 112 0v5a1 1 0 01-2 0V7zm1 7a1 1 0 110 2 1 1 0 010-2z" clip-rule="evenodd"></path>
+        </svg>
+        <span class="font-medium">{{ message }}</span>
+    </div>
+{% endfor %}
+{% for message in app.flashes('error') %}
+    <div class="flex items-center p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-3.707-8.707a1 1 0 011.414 0L10 10.586l2.293-2.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+        <span class="font-medium">{{ message }}</span>
+    </div>
+{% endfor %}
+
+{# <div class="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 space-y-6"> #}
+    
+    {{ form_start(form, {"attr":{"class":"space-y-4"}}) }}
+
+    <!-- Champ du nom -->
+    <div>
+        {{ form_label(form.name, null, {'label_attr': {'class': 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'}}) }}
+        {{ form_widget(form.name, {'attr': {'class': 'block w-full px-4 py-2 text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300'}}) }}
+    </div>
+
+    <!-- Champ de la description -->
+    <div>
+        {{ form_label(form.description, null, {'label_attr': {'class': 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'}}) }}
+        {{ form_widget(form.description, {'attr': {'class': 'block w-full px-4 py-2 text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300'}}) }}
+    </div>
+
+    <!-- Champs Prix et Stock côte à côte -->
+    <div class="flex flex-row">
+        <div class="w-full">
+            {{ form_errors(form.price) }}
+            {{ form_label(form.price, null, {'label_attr': {'class': 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'}}) }}
+            {{ form_widget(form.price, {'attr': {'class': 'block w-60 px-4 py-2 text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300'}}) }}
+        </div>
+        <div class="w-full ml-4">
+            {{ form_errors(form.stock) }}
+            {{ form_label(form.stock, null, {'label_attr': {'class': 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'}}) }}
+            {{ form_widget(form.stock, {'attr': {'class': 'block w-full ms-5 px-4 py-2 text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300'}}) }}
+        </div>
+    </div>
+
+    <!-- Champ IsValid -->
+    <div class="class="flex items-center"">
+        {{ form_label(form.isValid, null, {'label_attr': {'class': 'ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'}}) }}
+        {{ form_widget(form.isValid, {'attr': {
+            'class': 'w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-lg focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+        }}) }}
+    </div>
+
+    <!-- Champ de la catégorie -->
+    <div>
+        {{ form_label(form.category, null, {'label_attr': {'class': 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'}}) }}
+        {{ form_widget(form.category, {'attr': {'class': 'block w-full px-4 py-2 text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300'}}) }}
+    </div>
+
+    <!-- Bouton d'enregistrement -->
+    <div>
+        <button type="submit" class="inline-flex items-center justify-center px-5 py-2 text-white bg-gradient-to-r from-green-400 to-green-600 rounded-lg hover:from-green-500 hover:to-green-700 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-800 transition duration-300 shadow-lg">
+            {{ button_label|default('Enregistrer') }}
+        </button>
+    </div>
+    
+    {{ form_end(form) }}
+{# </div> #}

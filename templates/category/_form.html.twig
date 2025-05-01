@@ -1,0 +1,18 @@
+<!-- Messages de validation ou d'erreur -->
+{% for message in app.flashes('success') %}
+    <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+{% for message in app.flashes('error') %}
+    <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+    {{ form_widget(form.name, {'attr': {'class': 'block w-full px-4 py-2 text-sm text-gray-700 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300'}}) }}
+    <button type="submit" class="inline-flex items-center justify-center px-5 py-2 text-white bg-gradient-to-r from-green-400 to-green-600 rounded-lg hover:from-green-500 hover:to-green-700 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-800 transition duration-300 shadow-lg">
+        {{ button_label|default('Enregistrer') }}
+    </button>
+{{ form_end(form) }}

@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-6">
+    <!-- Titre principal -->
+    <h1 class="text-3xl font-extrabold text-center text-gray-800 dark:text-white mb-10">
+        <span class="bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text">
+            Mon Panier
+        </span>
+    </h1>
+
+    <!-- Tableau du Panier -->
+    <div class="relative overflow-x-auto rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs uppercase bg-gradient-to-r from-gray-200 to-gray-400 text-gray-800 dark:bg-gradient-to-r dark:from-gray-700 dark:to-gray-900 dark:text-gray-100">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Nom</th>
+                    <th scope="col" class="px-6 py-3">Prix</th>
+                    <th scope="col" class="px-6 py-3">Quantité</th>
+                    <th scope="col" class="px-6 py-3">Total</th>
+                    <th scope="col" class="px-6 py-3">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for info in data %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition duration-300">
+                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">{{ info.product.name }}</td>
+                    <td class="px-6 py-4">{{ info.product.price }}€</td>
+                    <td class="px-6 py-4">{{ info.quantity }}</td>
+                    <td class="px-6 py-4 font-bold text-teal-600 dark:text-teal-400">{{ info.product.price * info.quantity }}€</td>
+                    <td class="px-6 py-4 flex items-center space-x-2">
+                        <a href="{{ path('addPanier', {id:info.product.id}) }}" class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
+                            +
+                        </a>
+                        <a href="{{ path('suppPanier', {id:info.product.id}) }}" class="px-4 py-2 text-sm font-medium text-white bg-yellow-400 rounded-lg hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-900">
+                            -
+                        </a>
+                        <a href="{{ path('removePanier', {id:info.product.id}) }}" class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                            Supprimer
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
+                        Panier vide
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr class="bg-gray-100 dark:bg-gray-700">
+                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Total</td>
+                    <td colspan="2"></td>
+                    <td class="px-6 py-4 font-bold text-teal-600 dark:text-teal-400">{{ total }}€</td>
+                    <td class="px-6 py-4 flex space-x-3">
+                        <a href="{{ path('trashPanier') }}" class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                            Vider le panier
+                        </a>
+                        <a href="{{ path('app_stripe') }}" class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
+                            Valider la commande
+                        </a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+{% endblock %}
